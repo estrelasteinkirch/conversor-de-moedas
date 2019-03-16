@@ -31,6 +31,10 @@ export default class Conversor extends Component {
       });
   };
 
+  zerarConversao = () => {
+    this.setState({ moedaB_valor: 0 });
+  };
+
   render() {
     return (
       <section className="Conversor">
@@ -43,72 +47,72 @@ export default class Conversor extends Component {
               placeholder="Valor"
               onChange={event => {
                 this.setState({ moedaA_valor: event.target.value });
+                this.zerarConversao();
               }}
             />
           </Form.Group>
         </div>
 
         <div className="de-para">
-        <Form.Group controlId="input-de">
-          <Form.Label className="label">De:</Form.Label>
-          <Form.Control
-            as="select"
-            className="moeda"
-            value={this.state.moedaA}
-            onChange={event => {
-              this.setState({ moedaA: event.target.value });
+          <Form.Group controlId="input-de">
+            <Form.Label className="label">De:</Form.Label>
+            <Form.Control
+              as="select"
+              className="moeda"
+              value={this.state.moedaA}
+              onChange={event => {
+                this.setState({ moedaA: event.target.value });
+                this.zerarConversao();
+              }}
+            >
+              <option value="USD">USD</option>
+              <option value="BRL">BRL</option>
+              <option value="EUR">EUR</option>
+              <option value="CAD">CAD</option>
+            </Form.Control>
+          </Form.Group>
+
+          <Button
+            variant="outline-success"
+            className="btn-inverter"
+            onClick={event => {
+              const antigoA = this.state.moedaA;
+              const antigoB = this.state.moedaB;
+              this.setState({ moedaA: antigoB, moedaB: antigoA });
+              this.zerarConversao();
             }}
           >
-            <option value="USD">USD</option>
-            <option value="BRL">BRL</option>
-            <option value="EUR">EUR</option>
-            <option value="CAD">CAD</option>
-          </Form.Control>
-        </Form.Group>
+            Inverter
+          </Button>
 
-        <Button
-          variant="outline-success"
-          className="btn-inverter"
-          onClick={event => {
-            const antigoA = this.state.moedaA;
-            const antigoB = this.state.moedaB;
-            this.setState({ moedaA: antigoB, moedaB: antigoA });
-          }}
-        >
-          Inverter
-        </Button>
-
-        <Form.Group controlId="input-para">
-          <Form.Label className="label">Para:</Form.Label>
-          <Form.Control
-            as="select"
-            className="moeda"
-            value={this.state.moedaB}
-            onChange={event => {
-              this.setState({ moedaB: event.target.value });
-            }}
-          >
-            <option value="USD">USD</option>
-            <option value="BRL">BRL</option>
-            <option value="EUR">EUR</option>
-            <option value="CAD">CAD</option>
-          </Form.Control>
-        </Form.Group>
+          <Form.Group controlId="input-para">
+            <Form.Label className="label">Para:</Form.Label>
+            <Form.Control
+              as="select"
+              className="moeda"
+              value={this.state.moedaB}
+              onChange={event => {
+                this.setState({ moedaB: event.target.value });
+                this.zerarConversao();
+              }}
+            >
+              <option value="USD">USD</option>
+              <option value="BRL">BRL</option>
+              <option value="EUR">EUR</option>
+              <option value="CAD">CAD</option>
+            </Form.Control>
+          </Form.Group>
         </div>
-        <Button
-          variant="success"
-          size="lg"
-          block
-          onClick={this.converter}
-        >
+        <Button variant="success" size="lg" block onClick={this.converter}>
           Converter
         </Button>
-
-        <div className="convertido">
-          <h2>
-            {this.state.moedaB_valor} {this.state.moedaB}
-          </h2>
-        </div>
+        {this.state.moedaB_valor > 0 && (
+          <div className="convertido">
+            <h2>
+              {this.state.moedaB_valor} {this.state.moedaB}
+            </h2>
+          </div>
+        )}
       </section>
     );
   }
