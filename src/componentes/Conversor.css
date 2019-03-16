@@ -1,0 +1,29 @@
+.Conversor {
+  padding: 30px;
+  min-width: 40%;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+}
+
+.convertido{
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+
+h2 {
+  font-size: 3rem;
+  text-align: center;
+  margin: 0;
+}
+
+.de-para{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 10px;
+}
+
+.btn-inverter{
+  margin-bottom: 1rem;
+}
+
