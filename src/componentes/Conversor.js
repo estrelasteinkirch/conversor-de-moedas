@@ -43,8 +43,8 @@ export default class Conversor extends Component {
             <Form.Label className="label">Quero Converter:</Form.Label>
             <Form.Control
               size="lg"
-              type="text"
-              placeholder="Valor"
+              type="number"
+              placeholder="0.00"
               onChange={event => {
                 this.setState({ moedaA_valor: event.target.value });
                 this.zerarConversao();
