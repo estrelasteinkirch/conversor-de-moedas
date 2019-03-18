@@ -78,8 +78,10 @@ export default class Conversor extends Component {
             onClick={event => {
               const antigoA = this.state.moedaA;
               const antigoB = this.state.moedaB;
-              this.setState({ moedaA: antigoB, moedaB: antigoA });
-              this.zerarConversao();
+              this.setState(
+                { moedaA: antigoB, moedaB: antigoA },
+                this.converter
+              );
             }}
           >
             Inverter
@@ -103,6 +105,7 @@ export default class Conversor extends Component {
             </Form.Control>
           </Form.Group>
         </div>
+
         <Button variant="success" size="lg" block onClick={this.converter}>
           Converter
         </Button>
